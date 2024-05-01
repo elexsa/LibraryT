@@ -1,20 +1,30 @@
-﻿import { GoogleLogin } from "@react-oauth/google";
-import { jwtDecode } from "jwt-decode";
-function App() {
+﻿//import { GoogleLogin } from "@react-oauth/google";
+//import { jwtDecode } from "jwt-decode";
+//function App() {
+//    return (
+//        <GoogleLogin
+//            onSuccess={(credentialResponse) => {
+//                const credentialResponseDecoded = jwtDecode(credentialResponse.credential)
+//                console.log(credentialResponseDecoded);
+//            }}
+//            onError={() => {
+//                console.log("Login Failed");
+//            }}
+//        />
+//    );
+//}
+//export default App;
+
+
+import "./App.css";
+import Navbar from "./components/Navbar"
+export default function App() {
     return (
-        <GoogleLogin
-            onSuccess={(credentialResponse) => {
-                const credentialResponseDecoded = jwtDecode(credentialResponse.credential)
-                console.log(credentialResponseDecoded);
-            }}
-            onError={() => {
-                console.log("Login Failed");
-            }}
-        />
+        <div className="App">
+            <Navbar />
+        </div>
     );
 }
-export default App;
-
 //import { useEffect, useState } from 'react';
 //import './App.css';
 
