@@ -3,7 +3,7 @@ export const MenuData = [
         title: "Home",
         url: "#",
         cName: "nav-links",
-        icon: "fa-duotone fa-house"
+        icon: "fa-solid fa-house"
     },
 
     {
@@ -31,6 +31,6 @@ export const MenuData = [
         title: "SignIn",
         url: "#",
         cName: "nav-links",
-        icon: "fa-solid fa-address-book"
+        icon: "fa-brands fa-google"
     },
 ]
