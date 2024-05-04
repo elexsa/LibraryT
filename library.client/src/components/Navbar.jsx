@@ -3,7 +3,9 @@ import React, { Component } from 'react';
 //import { Link } from 'react-router-dom';
 //import './NavbarStyles.css';
 import { MenuData } from "./MenuData";
-import "./NavbarStyle.css";
+import { SearchBar } from "./SearchBar";
+import "./NavbarStyles.css";
+
 
 class Navbar extends Component {
     state = { clicked: false };
@@ -14,11 +16,17 @@ class Navbar extends Component {
         return (
             <nav className="NavbarItems">
                 <h1 className="logo">
-                    React <i class="fa-solid fa-book"></i>
+                    Library <i class="fa-solid fa-book"></i>
                 </h1>
+
+                <div className="search-bar-container">
+                    <SearchBar />
+                </div>
+
                 <div className="menu-icons" onClick={this.handleClick}>
                     <i className={this.state.clicked ? "fas fa-times" : "fas fa-bars"}></i>
                 </div>
+
                 <ul className={this.state.clicked ? "nav-menu active" : "nav-menu"}>
                     {MenuData.map((item, index) => {
                         return (
@@ -31,6 +39,7 @@ class Navbar extends Component {
                     })}
                     
                 </ul>
+
             </nav>
         )
     } I
