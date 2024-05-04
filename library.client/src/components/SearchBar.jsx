@@ -1,16 +1,26 @@
 import React, {useState} from "react";
 import "./SearchBarStyles.css"
+import { SearchResultsList } from './SearchResultsList';
+
 
 
 export const SearchBar = () => {
     const [input, setInput] = useState("");
+    const [results, setResults] = useState([]);
+
 
     const fetchData = (value) => {
-        fetch(`/api/BooksVolumes/GetBooksByName?name=${value}`)
-            .then((response) => response.json())
-            .then((json) => {
-                console.log(json.items);
-            });
+        if (value != "") {
+            fetch(`/api/BooksVolumes/GetBooksByName?name=${value}`)
+                .then((response) => response.json())
+                .then((json) => {
+
+                    const results = json.items;
+                    setResults(results);
+                    
+                });
+        } else { const results = []; setResults(results); }
+
     }
 
     const handleChange = (value) => {
@@ -27,6 +37,9 @@ export const SearchBar = () => {
                 value={input} 
                 onChange={(e) => handleChange(e.target.value)}
             />
+            <div className="search-result-container">
+                <SearchResultsList results={results} />
+            </div>
         </div>
     )
 }

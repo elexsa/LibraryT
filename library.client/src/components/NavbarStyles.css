@@ -63,7 +63,12 @@
 
 .fa-bars {
     color: white;
-    padding-left: 16px;
+    padding-left: 15.59px;
+    
+}
+
+.fa-bars, .fa-times:hover {
+    cursor: pointer;
 }
 
 .menu-icons {
@@ -73,6 +78,13 @@
 .menu-icons {
     display: none;
 }
+
+.end-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+
 
 @media screen and (max-width: 975px) {
     .NavbarItems {

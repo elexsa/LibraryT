@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
+import {useState} from "react";
 //import { Collapse, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink }
 //import { Link } from 'react-router-dom';
 //import './NavbarStyles.css';
@@ -7,43 +8,48 @@ import { SearchBar } from "./SearchBar";
 import "./NavbarStyles.css";
 
 
-class Navbar extends Component {
-    state = { clicked: false };
-    handleClick = () => {
-        this.setState({clicked: !this.state.clicked})
-    }
-    render() {
-        return (
-            <nav className="NavbarItems">
-                <h1 className="logo">
-                    Library <i class="fa-solid fa-book"></i>
-                </h1>
+function Navbar()
+{
+    const [state, setState] = useState(true);
+    const handleClick = () => {setState({ clicked: !state.clicked })}
 
+
+    return (
+
+        <nav className="NavbarItems">
+            <h1 className="logo">
+                Library <i class="fa-solid fa-book"></i>
+            </h1>
+
+            <div className="end-wrapper">
                 <div className="search-bar-container">
                     <SearchBar />
                 </div>
 
-                <div className="menu-icons" onClick={this.handleClick}>
-                    <i className={this.state.clicked ? "fas fa-times" : "fas fa-bars"}></i>
+
+                <div className="menu-icons" onClick={handleClick}>
+                    <i className={state.clicked ? "fas fa-times" : "fas fa-bars"}></i>
                 </div>
 
-                <ul className={this.state.clicked ? "nav-menu active" : "nav-menu"}>
+                <ul className={state.clicked ? "nav-menu active" : "nav-menu"}>
                     {MenuData.map((item, index) => {
                         return (
                             <li key={index}>
                                 <a href={item.url} className={item.cName}>
-                                    <i class={item.icon}></i>{item.title}
+                                    <i className={item.icon}></i>{item.title}
                                 </a>
                             </li>
                         )
                     })}
-                    
-                </ul>
 
-            </nav>
-        )
-    } I
+                </ul>
+            </div>
+        </nav>
+
+    )
 }
+    
+
 export default Navbar;
 //export class NavMenu extends Component {
 //    static displayName = NavMenu.name;

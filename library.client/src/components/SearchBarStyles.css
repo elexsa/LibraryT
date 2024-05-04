@@ -20,5 +20,17 @@
 
 .search-input:focus {
     outline: none;
+
 }
+.search-result-container {
+    display: none;
+    top: 80px;
+    position: absolute;
+}
+
+.search-input:focus + .search-result-container{
+    display: block;
+}
+
+
 
