@@ -1,36 +1,39 @@
 export const MenuData = [
     {
         title: "Home",
-        url: "#",
+        url: "/",
         cName: "nav-links",
         icon: "fa-solid fa-house"
     },
 
-    {
-        title: "About",
-        url: "#",
-        cName: "nav-links",
-        icon: "fa-solid fa-circle-info"
-    },
+    //{
+    //    title: "About",
+    //    url: "",
+    //    cName: "nav-links",
+    //    icon: "fa-solid fa-circle-info"
+    //},
 
-    {
-        title: "Service",
-        url: "#",
-        cName: "nav-links",
-        icon: "fa-solid fa-briefcase" 
-    },
+    //{
+    //    title: "Service",
+    //    url: "#",
+    //    cName: "nav-links",
+    //    icon: "fa-solid fa-briefcase" 
+    //},
 
     {
         title: "search",
-        url: "#",
+        url: "/search",
         cName: "nav-links",
         icon: "fa-solid fa-address-book"
     },
 
+
     {
-        title: "SignIn",
-        url: "#",
+        title: "test",
+        url: "https://localhost:7134/GoogleOAuth/RedirectOnOAuthServer",
         cName: "nav-links",
-        icon: "fa-brands fa-google"
+        icon: "fa-solid fa-address-book"
     },
+
+
 ]

@@ -1,5 +1,5 @@
-﻿using Newtonsoft.Json;
-using Library.Server.Models;
+﻿using Library.Server.Models;
+using Newtonsoft.Json;
 
 
 namespace Library.Server.Clients
@@ -19,7 +19,7 @@ namespace Library.Server.Clients
 
         public async Task<BooksVolumes> GetBooksByName(string name, int num)
         {
-            string NameParamAddress = _address+$"?q={name}&maxResults={num}&?key={_apiKey}";
+            string NameParamAddress = _address + $"?q={name}&maxResults={num}&?key={_apiKey}";
             var client = new HttpClient();
             var request = new HttpRequestMessage
             {

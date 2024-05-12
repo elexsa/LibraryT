@@ -1,13 +1,41 @@
+using Library.Server;
+//using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Authentication.Cookies;
+
+
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+//builder.Services.AddAuthentication(options =>
+//{
+//    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+//    options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
+//})
+//.AddCookie().
+//AddGoogle(GoogleDefaults.AuthenticationScheme, options =>
+//{
+//    options.ClientId = builder.Configuration.GetSection("GoogleKeys:ClientId").Value;
+//    options.ClientSecret = builder.Configuration.GetSection("GoogleKeys:ClientSecret").Value;
+//});
 
+
+// Add services to the container.
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+// Add session state to store data in specific session
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromSeconds(10);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 
 var app = builder.Build();
+
 
 app.UseDefaultFiles();
 app.UseStaticFiles();
@@ -19,9 +47,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseSession();
 
 app.MapControllers();
 

@@ -1,17 +1,30 @@
-import React from 'react';
+﻿import React from 'react';
 import {useState} from "react";
 //import { Collapse, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink }
 //import { Link } from 'react-router-dom';
 //import './NavbarStyles.css';
 import { MenuData } from "./MenuData";
 import { SearchBar } from "./SearchBar";
+import { Link } from 'react-router-dom';
 import "./NavbarStyles.css";
-
+import { GoogleLogin } from "@react-oauth/google";
+import { jwtDecode } from "jwt-decode";
+import { useGoogleLogin } from '@react-oauth/google';
 
 function Navbar()
 {
     const [state, setState] = useState(true);
-    const handleClick = () => {setState({ clicked: !state.clicked })}
+    const handleClick = () => { setState({ clicked: !state.clicked }) }
+
+    const login = useGoogleLogin({
+        onSuccess: tokenResponse =>
+        {
+            console.log(tokenResponse);
+            
+        },
+        select_account: true,
+        //flow: 'auth-code',
+    });
 
 
     return (
@@ -28,7 +41,7 @@ function Navbar()
 
 
                 <div className="menu-icons" onClick={handleClick}>
-                    <i className={state.clicked ? "fas fa-times" : "fas fa-bars"}></i>
+                    <i className={state.clicked ? "fas fa-xmark" : "fas fa-bars"}></i>
                 </div>
 
                 <ul className={state.clicked ? "nav-menu active" : "nav-menu"}>
@@ -41,7 +54,21 @@ function Navbar()
                             </li>
                         )
                     })}
-
+                    <li>
+                        <button className="nav-links" onClick={() => login()}>
+                            <i className="fa-brands fa-google"></i>
+                            SignIn
+                        </button>
+                    </li>
+                    {/*<GoogleLogin*/}
+                    {/*    onSuccess={(credentialResponse) => {*/}
+                    {/*        const credentialResponseDecoded = jwtDecode(credentialResponse.credential)*/}
+                    {/*        console.log(credentialResponseDecoded);*/}
+                    {/*    }}*/}
+                    {/*    onError={() => {*/}
+                    {/*        console.log("Login Failed");*/}
+                    {/*    }}*/}
+                    {/*/>*/}
                 </ul>
             </div>
         </nav>

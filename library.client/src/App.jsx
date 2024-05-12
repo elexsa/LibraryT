@@ -1,31 +1,40 @@
-﻿//import { GoogleLogin } from "@react-oauth/google";
-//import { jwtDecode } from "jwt-decode";
+﻿
 //function App() {
 //    return (
-//        <GoogleLogin
-//            onSuccess={(credentialResponse) => {
-//                const credentialResponseDecoded = jwtDecode(credentialResponse.credential)
-//                console.log(credentialResponseDecoded);
-//            }}
-//            onError={() => {
-//                console.log("Login Failed");
-//            }}
-//        />
+
 //    );
 //}
 //export default App;
 
-
+import React from "react";
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route,
+} from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar"
+import Home from "./pages/Home";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+
 export default function App() {
 
     return (
         <div className="App">
-            <Navbar />
+            <GoogleOAuthProvider clientId="112383829383-puhoirnfaatkvtps1k44pc7ec42ojgit.apps.googleusercontent.com">
+                <Navbar />
+                {/*<Routes>*/}
+                {/*    <Route path="/" element={<Home />} />*/}
+                {/*    */}{/*<Route path="/search" element={<Search />} />*/}
+                {/*</Routes>*/}
+
+            </GoogleOAuthProvider>
+
+            
         </div>
     );
 }
+
 //import { useEffect, useState } from 'react';
 //import './App.css';
 
