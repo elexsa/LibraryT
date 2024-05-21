@@ -22,7 +22,8 @@ namespace Library.Server.Services
                 { "response_type", "code" },
                 { "scope", scope },
                 { "code_challenge", codeChellange },
-                { "code_challenge_method", "S256" }
+                { "code_challenge_method", "S256" },
+                { "access_type", "offline" }
             };
 
             var url = QueryHelpers.AddQueryString(oAuthServerEndpoint, queryParams);
@@ -46,9 +47,20 @@ namespace Library.Server.Services
             return tokenResult;
         }
 
-        public static object RefreshToken(string refreshToken)
+        public static async Task<TokenResult> RefreshTokenAsync(string refreshToken)
         {
-            throw new NotImplementedException();
+            string refreshEndpoint = "https://oauth2.googleapis.com/token";
+            var refreshParams = new Dictionary<string, string>
+            {
+                { "client_id", ClientId },
+                { "client_secret", ClientSecret },
+                { "grant_type", "refresh_token" },
+                { "refresh_token", refreshToken }
+            };
+
+            var tokenResult = await HttpClientHelper.SendPostRequest<TokenResult>(refreshEndpoint, refreshParams);
+
+            return tokenResult;
         }
 
 

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Library.Server.Services;
 using Library.Server.Helpers;
 using Newtonsoft.Json;
+using Library.Server.Models;
 
 namespace Library.Server.Controllers
 {
@@ -71,14 +72,25 @@ namespace Library.Server.Controllers
         }
 
         [HttpGet(Name = "CodeAsync")]
-        public async Task<IActionResult> CodeAsync(string code)
+        public async Task<string> CodeAsync(string code)
         {
-            await Console.Out.WriteLineAsync("Second: "+HttpContext.Session.Id);
+            await Console.Out.WriteLineAsync("Second: " + HttpContext.Session.Id);
             string codeVerifier = HttpContext.Session.GetString("codeVerifier");
             string redirectUrl = "https://localhost:7134/GoogleOAuth/Code";
             //await Console.Out.WriteLineAsync("helo");
             var tokenResult = await GoogleOAuthService.ExchangeCodeOnTokenAsync(code, codeVerifier, redirectUrl);
-            return Ok();
+
+            //var bookShelvesList = BooksService.GetVolumesOnMyBookshelf(tokenResult.AccessToken).Result;
+
+            // Почекаємо 3600 секунд
+            // (саме стільки можна використовувати AccessToken, поки його термін придатності не спливе).
+
+            // І оновлюємо Токен Доступу за допомогою Refresh-токена.
+            //if(tokenResult.ExpiresIn)
+            
+            //var refreshedTokenResult = await GoogleOAuthService.RefreshTokenAsync(tokenResult.RefreshToken);
+
+            return "bookShelvesList";
         }
     }
 }

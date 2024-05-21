@@ -30,9 +30,12 @@ function Navbar()
     return (
 
         <nav className="NavbarItems">
-            <h1 className="logo">
-                Library <i class="fa-solid fa-book"></i>
-            </h1>
+            <a href="/">
+                <h1 className="logo">
+                    Library <i class="fa-solid fa-book"></i>
+                </h1>
+            </a>
+
 
             <div className="end-wrapper">
                 <div className="search-bar-container">
@@ -54,12 +57,12 @@ function Navbar()
                             </li>
                         )
                     })}
-                    <li>
-                        <button className="nav-links" onClick={() => login()}>
-                            <i className="fa-brands fa-google"></i>
-                            SignIn
-                        </button>
-                    </li>
+                    {/*<li>*/}
+                    {/*    <button className="nav-links" onClick={() => login()}>*/}
+                    {/*        <i className="fa-brands fa-google"></i>*/}
+                    {/*        SignIn*/}
+                    {/*    </button>*/}
+                    {/*</li>*/}
                     {/*<GoogleLogin*/}
                     {/*    onSuccess={(credentialResponse) => {*/}
                     {/*        const credentialResponseDecoded = jwtDecode(credentialResponse.credential)*/}

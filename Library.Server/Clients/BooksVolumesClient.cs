@@ -1,5 +1,7 @@
 ﻿using Library.Server.Models;
 using Newtonsoft.Json;
+using Library.Server.Helpers;
+using Library.Server.Helpers;
 
 
 namespace Library.Server.Clients
@@ -42,17 +44,44 @@ namespace Library.Server.Clients
 
         public async Task<BookVolume> GetBookById(string id)
         {
-            string NameParamAddress = $"{_address}{id}/?key={_apiKey}";
+            string NameParamAddress = $"https://www.googleapis.com/books/v1/volumes/{id}/?key={_apiKey}";
             var client = new HttpClient();
             var request = new HttpRequestMessage
             {
                 Method = HttpMethod.Get,
-                RequestUri = new Uri(NameParamAddress)
+                RequestUri = new Uri(NameParamAddress),
+
             };
             var response = await client.SendAsync(request);
             response.EnsureSuccessStatusCode();
             var body = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<BookVolume>(body);
+            return result;
+        }
+
+        public async Task<BooksVolumes> GetBookByParams(string title="", string author="")
+        {
+            string terms = "";
+            var endpoint = "https://www.googleapis.com/books/v1/volumes";
+
+            if(title != "")
+            {
+                terms += "intitle:" + title;
+            }
+            if(author != "")
+            {   
+                if(terms != ""){ terms += "+"; }
+                terms += "inauthor:" + author;
+            }
+
+            
+            var searchParams = new Dictionary<string, string>
+            {
+                { "q", terms },
+
+            };
+
+            var result = await HttpClientHelper.SendGetRequest<BooksVolumes>(endpoint, searchParams);
             return result;
         }
     }

@@ -1,0 +1,33 @@
+/* src/components/BookCard.css */
+.book-card-home {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 200px;
+}
+
+.book-card-home img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.book-details-home h3 {
+    margin: 0 0 10px;
+}
+
+.book-details-home p {
+    margin: 5px 0;
+}
+
+.book-details-home span {
+    font-size: 0.9em;
+    color: #555;
+}

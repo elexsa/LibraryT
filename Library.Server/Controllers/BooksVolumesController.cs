@@ -31,6 +31,19 @@ namespace Library.Server.Controllers
             return bookVolume;
         }
 
+        [HttpGet(Name = "GetBookByParams")]
+        public BooksVolumes GetBookByParams(string title="", string author ="")
+        {
+            BooksVolumesClient client = new BooksVolumesClient();
+            try
+            {
+                BooksVolumes bookVolume = client.GetBookByParams(title, author).Result;
+                return bookVolume;
+
+            }
+            catch (Exception ex) { Console.WriteLine(ex.Message); }
+            return new();
+        }
 
     }
 }

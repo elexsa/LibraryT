@@ -1,0 +1,25 @@
+/* src/components/GenreList.css */
+.genre-list {
+    background-color: #222;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.genre-list h2 {
+    margin-bottom: 20px;
+}
+
+.genre-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.genre-list li {
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.genre-list li:hover {
+    text-decoration: underline;
+}

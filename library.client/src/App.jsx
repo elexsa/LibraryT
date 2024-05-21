@@ -15,18 +15,23 @@ import {
 import "./App.css";
 import Navbar from "./components/Navbar"
 import Home from "./pages/Home";
+import Preview from "./pages/Preview";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import Search from "./pages/Search";
 
 export default function App() {
 
     return (
         <div className="App">
             <GoogleOAuthProvider clientId="112383829383-puhoirnfaatkvtps1k44pc7ec42ojgit.apps.googleusercontent.com">
-                <Navbar />
-                {/*<Routes>*/}
-                {/*    <Route path="/" element={<Home />} />*/}
-                {/*    */}{/*<Route path="/search" element={<Search />} />*/}
-                {/*</Routes>*/}
+                <div className="navbar-wrapper">
+                    <Navbar />
+                </div>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/preview" element={<Preview />} />
+                    <Route path="/search" element={<Search />} />
+                </Routes>
 
             </GoogleOAuthProvider>
 

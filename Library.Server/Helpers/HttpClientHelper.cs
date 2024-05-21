@@ -7,7 +7,7 @@ namespace Library.Server.Helpers
 {
     public class HttpClientHelper
     {
-        public static async Task<T> SendGetRequest<T>(string endpoint, Dictionary<string, string> queryParams, string accessToken)
+        public static async Task<T> SendGetRequest<T>(string endpoint, Dictionary<string, string> queryParams, string accessToken=null)
         {
             return await SendHttpRequestAsync<T>(HttpMethod.Get, endpoint, accessToken, queryParams);
         }

@@ -1,0 +1,15 @@
+
+.container {
+    display: flex;
+    width: 100%;
+    padding: 0 1rem;
+}
+
+.genre-list {
+    width: 200px;
+    margin-right: 20px;
+}
+
+.book-list {
+    
+}

@@ -27,13 +27,13 @@ export const MenuData = [
         icon: "fa-solid fa-address-book"
     },
 
-
     {
-        title: "test",
+        title: "Sign in (test)",
         url: "https://localhost:7134/GoogleOAuth/RedirectOnOAuthServer",
         cName: "nav-links",
-        icon: "fa-solid fa-address-book"
+        icon: "fa-brands fa-google"
     },
+
 
 
 ]

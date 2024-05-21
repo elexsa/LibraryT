@@ -14,7 +14,9 @@
     left: 50%;
     transform: translate(-50%);
 }
-
+.navbar-wrapper{
+    height:90px
+}
 .logo {
     color: #fff;
     justify-self: start;
@@ -91,7 +93,7 @@
     padding: 0 1rem;
 }
 
-@media screen and (max-width: 975px) {
+@media screen and (max-width: 900px) {
     .NavbarItems {
         z-index: 99;
     }
@@ -102,7 +104,7 @@
         justify-content: flex-start;
         background: rgba(255, 255, 255, .25);
         box-shadow: 0 8px 32px rgba(31, 38, 135, .37);
-        backdrop-filter: blur(5px);
+        backdrop-filter: blur(8px);
         border-radius: 13px;
         width: 100%;
         height: auto;
@@ -130,7 +132,9 @@
     .menu-icons {
         display: flex;
     }
-
+    .search-result-container{
+        right: 0
+    }
     .input-wrapper {
         
     }
