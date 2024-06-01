@@ -1,7 +1,7 @@
 // src/RegisterPage.js
 import React, { useState } from 'react';
 import { useUser } from '../context/UserContext';
-import { useNavigate } from 'react-router-dom'; // To navigate to different routes
+import { useNavigate } from 'react-router-dom';
 
 function RegisterPage() {
     const [email, setEmail] = useState('');
@@ -9,9 +9,8 @@ function RegisterPage() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const { setUser } = useUser();
     const navigate = useNavigate();
-    var id = ""
 
-    const handleRegister = (e) => {
+    const handleRegister = async (e) => {
         e.preventDefault();
 
         if (password !== confirmPassword) {
@@ -19,26 +18,24 @@ function RegisterPage() {
             return;
         }
 
-        // Replace with your registration API call
-        // Example using fetch:
-        fetch('/api/Users/register', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ id, email, password })
-        })
-            .then((data) => {
-                console.log(data)
-                if (data.ok) {
-                    setUser(data.user);
-                    navigate('/bookshelves'); // Redirect to profile or any other page
-                } else {
-                    alert('Registration failed');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('An error occurred. Please try again.');
+        try {
+            const response = await fetch('/api/users/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password }),
             });
+
+            if (response.ok) {
+                const { token, user } = await response.json();
+                setUser(user, token);
+                navigate('/profile');
+            } else {
+                alert('Registration failed');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again.');
+        }
     };
 
     return (

@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Library.Server.Models;
-using Library.Server.Clients;
-using Library.Server.Database;
+﻿// Controllers/UsersController.cs
 
+using Library.Server.Database;
+using Library.Server.Helpers;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Library.Server.Controllers
 {
@@ -11,12 +11,12 @@ namespace Library.Server.Controllers
     public class UsersController : ControllerBase
     {
         private readonly UserRepository _userRepository;
+        private readonly JwtHelper _jwtHelper;
 
-        private readonly ILogger<UsersController> _logger;
-        public UsersController(ILogger<UsersController> logger, UserRepository userRepository)
+        public UsersController(UserRepository userRepository, JwtHelper jwtHelper)
         {
-            _logger = logger;
             _userRepository = userRepository;
+            _jwtHelper = jwtHelper;
         }
 
         [HttpPost("register")]
@@ -29,7 +29,7 @@ namespace Library.Server.Controllers
             }
 
             _userRepository.CreateUser(user);
-            return Ok("User registered successfully.");
+            return Ok(new { token = _jwtHelper.GenerateToken(user.Email), user });
         }
 
         [HttpPost("login")]
@@ -41,7 +41,7 @@ namespace Library.Server.Controllers
                 return Unauthorized("Invalid email or password.");
             }
 
-            return Ok(existingUser);
+            return Ok(new { token = _jwtHelper.GenerateToken(existingUser.Email), user = existingUser });
         }
     }
 }

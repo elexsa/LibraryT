@@ -1,7 +1,7 @@
 // src/LoginPage.js
 import React, { useState } from 'react';
 import { useUser } from '../context/UserContext';
-import { useNavigate } from 'react-router-dom'; // To navigate to different routes
+import { useNavigate } from 'react-router-dom';
 
 function LoginPage() {
     const [email, setEmail] = useState('');
@@ -10,29 +10,27 @@ function LoginPage() {
     const navigate = useNavigate();
     var id = ""
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
 
-        // Replace with your login API call
-        // Example using fetch:
-        fetch('/api/Users/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ id, email, password })
-        })
-            .then(data => {
-                if (data.ok) {
-                    console.log(email)
-                    setUser(email);
-                    navigate('/bookshelves'); // Redirect to profile or any other page
-                } else {
-                    alert('Login failed');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('An error occurred. Please try again.');
+        try {
+            const response = await fetch('/api/users/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({id, email, password }),
             });
+
+            if (response.ok) {
+                const { token, user } = await response.json();
+                setUser(user, token);
+                navigate('/bookshelves');
+            } else {
+                alert('Login failed');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred. Please try again.');
+        }
     };
 
     return (
@@ -61,10 +59,6 @@ function LoginPage() {
                 </div>
                 <button type="submit">Login</button>
             </form>
-
-            <div>
-                <a href="/register">Don't have ann account?</a>
-            </div>
         </div>
     );
 }
