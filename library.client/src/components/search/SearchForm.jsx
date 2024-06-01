@@ -7,7 +7,11 @@ const SearchForm = () => {
     const [searchParams, setSearchParams] = useState({
         title: '',
         author: '',
-        
+        subject: '',
+        publisher:'',
+        isbn: '',
+        lccn: '',
+        oclc:''
     });
 
     const [results, setResults] = useState([]);
@@ -75,12 +79,24 @@ const SearchForm = () => {
                     <input type="text" id="author" name="author" value={searchParams.author} onChange={handleChange} />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="genre">Genre:</label>
-                    <input type="text" id="genre" name="genre" value={searchParams.genre} onChange={handleChange} />
+                    <label htmlFor="subject">Subject:</label>
+                    <input type="text" id="subject" name="subject" value={searchParams.subject} onChange={handleChange} />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="publishedDate">Published Date:</label>
-                    <input type="date" id="publishedDate" name="publishedDate" value={searchParams.publishedDate} onChange={handleChange} />
+                    <label htmlFor="publisher">Publisher:</label>
+                    <input type="text" id="publisher" name="publisher" value={searchParams.publisher} onChange={handleChange} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="isbn">ISBN:</label>
+                    <input type="text" id="isbn" name="isbn" value={searchParams.isbn} onChange={handleChange} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="lccn">LCCN:</label>
+                    <input type="text" id="lccn" name="lccn" value={searchParams.lccn} onChange={handleChange} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="oclc">OCLC:</label>
+                    <input type="text" id="oclc" name="oclc" value={searchParams.oclc} onChange={handleChange} />
                 </div>
                 <button type="submit" className="btn-submit">Search</button>
             </form>

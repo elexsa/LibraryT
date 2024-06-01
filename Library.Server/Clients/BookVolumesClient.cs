@@ -50,28 +50,47 @@ namespace Library.Server.Clients
             return result;
         }
 
-        public async Task<BookVolumes> GetBookByParams(string title="", string author="")
+        public async Task<BookVolumes> GetBookByParams(string title="", string author="",  string publisher = "", string subject = "", string isbn = "", string lccn = "", string oclc = "")
         {
-            string terms = "";
+            List<string> terms = new List<string>();
             var endpoint = "https://www.googleapis.com/books/v1/volumes";
 
             if(title != "")
             {
-                terms += "intitle:" + title;
+                terms.Add("intitle:" + title);
             }
             if(author != "")
-            {   
-                if(terms != ""){ terms += "+"; }
-                terms += "inauthor:" + author;
+            {
+                terms.Add("inauthor:" + author);
+            }
+            if (publisher != "")
+            {
+                terms.Add("inpublisher:" + publisher);
+            }
+            if (subject != "")
+            {
+                terms.Add("subject:" + subject);
+            }
+            if (isbn != "")
+            {
+                terms.Add("isbn:" + isbn);
+            }
+            if (lccn != "")
+            {
+                terms.Add("lccn:" + lccn);
+            }
+            if (isbn != "")
+            {
+                terms.Add("oclc:" + oclc);
             }
 
-            
+
             var searchParams = new Dictionary<string, string>
             {
-                { "q", terms },
+                { "q", string.Join("+", terms) },
 
             };
-
+            await Console.Out.WriteLineAsync(string.Join("+", terms));
             var result = await HttpClientHelper.SendGetRequest<BookVolumes>(endpoint, searchParams);
             return result;
         }

@@ -33,12 +33,12 @@ namespace Library.Server.Controllers
         }
 
         [HttpGet(Name = "GetBookByParams")]
-        public BookVolumes GetBookByParams(string title="", string author ="")
+        public BookVolumes GetBookByParams(string title = "", string author = "", string publisher = "", string subject = "", string isbn = "", string lccn = "", string oclc = "")
         {
             BookVolumesClient client = new BookVolumesClient();
             try
             {
-                BookVolumes bookVolume = client.GetBookByParams(title, author).Result;
+                BookVolumes bookVolume = client.GetBookByParams(title, author, publisher, subject, isbn, lccn, oclc).Result;
                 return bookVolume;
 
             }
