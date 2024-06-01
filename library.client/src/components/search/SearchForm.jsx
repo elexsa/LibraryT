@@ -9,9 +9,6 @@ const SearchForm = () => {
         author: '',
         subject: '',
         publisher:'',
-        isbn: '',
-        lccn: '',
-        oclc:''
     });
 
     const [results, setResults] = useState([]);
@@ -53,6 +50,7 @@ const SearchForm = () => {
 
                                     <h3>{book.volumeInfo.title}</h3>
                                     <p>Author: {book.volumeInfo.authors}</p>
+                                    <span>Publisher: {book.volumeInfo.publisher != null ? book.volumeInfo.publisher : "not specified"}</span>
                                     <span>Published Date: {book.volumeInfo.publishedDate != null ? new Date(book.volumeInfo.publishedDate).toDateString() : "not specified"}</span>
                                 </div>
                             </div>
@@ -86,18 +84,7 @@ const SearchForm = () => {
                     <label htmlFor="publisher">Publisher:</label>
                     <input type="text" id="publisher" name="publisher" value={searchParams.publisher} onChange={handleChange} />
                 </div>
-                <div className="form-group">
-                    <label htmlFor="isbn">ISBN:</label>
-                    <input type="text" id="isbn" name="isbn" value={searchParams.isbn} onChange={handleChange} />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="lccn">LCCN:</label>
-                    <input type="text" id="lccn" name="lccn" value={searchParams.lccn} onChange={handleChange} />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="oclc">OCLC:</label>
-                    <input type="text" id="oclc" name="oclc" value={searchParams.oclc} onChange={handleChange} />
-                </div>
+
                 <button type="submit" className="btn-submit">Search</button>
             </form>
             <div className="results">

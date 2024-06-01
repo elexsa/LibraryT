@@ -50,7 +50,7 @@ namespace Library.Server.Clients
             return result;
         }
 
-        public async Task<BookVolumes> GetBookByParams(string title="", string author="",  string publisher = "", string subject = "", string isbn = "", string lccn = "", string oclc = "")
+        public async Task<BookVolumes> GetBookByParams(string title="", string author="",  string publisher = "", string subject = "", string isbn = "")
         {
             List<string> terms = new List<string>();
             var endpoint = "https://www.googleapis.com/books/v1/volumes";
@@ -75,14 +75,7 @@ namespace Library.Server.Clients
             {
                 terms.Add("isbn:" + isbn);
             }
-            if (lccn != "")
-            {
-                terms.Add("lccn:" + lccn);
-            }
-            if (isbn != "")
-            {
-                terms.Add("oclc:" + oclc);
-            }
+
 
 
             var searchParams = new Dictionary<string, string>
