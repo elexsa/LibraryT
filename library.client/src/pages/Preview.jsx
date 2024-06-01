@@ -12,7 +12,7 @@ import "./styles/PreviewPage.css"
     let content
     const [data, setData] = useState([]);
     async function apiResult(id) {
-        const res = await fetch("/api/BooksVolumes/GetBookById?id=" + id)
+        const res = await fetch("/api/Bookvolumes/GetBookById?id=" + id)
         const data = await res.json()
         globalData = await data
         setData(globalData)

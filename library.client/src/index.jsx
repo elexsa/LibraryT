@@ -1,26 +1,34 @@
+//import React from 'react'
+//import ReactDOM from 'react-dom/client'
+//import App from './App.jsx'
+//import './index.css'
+
+//ReactDOM.createRoot(document.getElementById('root')).render(
+//  <React.StrictMode>
+//        <h1>hello</h1>
+//        <App />
+//  </React.StrictMode>,
+//)
+
+import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Layout from "./pages/Layout";
-import Home from "./pages/Home";
-import Blogs from "./pages/Blogs";
-import Contact from "./pages/Contact";
-import NoPage from "./pages/NoPage";
-//import LogoutBtn from "./components/logout"
 
-export default function App() {
-    return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<Layout />}>
-                    <Route index element={<Home />} />
-                    <Route path="blogs" element={<Blogs />} />
-                    <Route path="contact" element={<Contact />} />
-                    <Route path="*" element={<NoPage />} />
-                </Route>
-            </Routes>
-        </BrowserRouter>
-    );
-}
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<App />);
+import App from "./App";
+import "./index.css";
+import {UserProvider} from './context/UserContext.jsx';
+
+
+import { useContext } from 'react';
+
+
+ReactDOM.createRoot(document.getElementById("root")).render(
+    <React.StrictMode>
+        <UserProvider>
+            <Router>
+                <App/>
+            </Router>
+        </UserProvider>
+    </React.StrictMode>
+);

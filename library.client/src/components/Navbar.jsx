@@ -16,15 +16,7 @@ function Navbar()
     const [state, setState] = useState(true);
     const handleClick = () => { setState({ clicked: !state.clicked }) }
 
-    const login = useGoogleLogin({
-        onSuccess: tokenResponse =>
-        {
-            console.log(tokenResponse);
-            
-        },
-        select_account: true,
-        //flow: 'auth-code',
-    });
+    
 
 
     return (

@@ -1,6 +1,6 @@
 ﻿namespace Library.Server.Models
 {
-    public class BooksVolumes
+    public class BookVolumes
     {
         public string kind { get; set; }
         public int totalItems { get; set; }

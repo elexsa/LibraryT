@@ -53,5 +53,13 @@ export default defineConfig({
             key: fs.readFileSync(keyFilePath),
             cert: fs.readFileSync(certFilePath),
         }
-    }
+    },
+    rollupOptions: {
+        external: ["react", "react-router", "react-router-dom", "react-redux"],
+        output: {
+            globals: {
+                react: "React",
+            },
+        },
+    },
 })

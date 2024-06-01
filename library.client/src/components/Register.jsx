@@ -1,32 +1,38 @@
-// src/LoginPage.js
+// src/RegisterPage.js
 import React, { useState } from 'react';
 import { useUser } from '../context/UserContext';
 import { useNavigate } from 'react-router-dom'; // To navigate to different routes
 
-function LoginPage() {
+function RegisterPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
     const { setUser } = useUser();
     const navigate = useNavigate();
     var id = ""
 
-    const handleLogin = (e) => {
+    const handleRegister = (e) => {
         e.preventDefault();
 
-        // Replace with your login API call
+        if (password !== confirmPassword) {
+            alert('Passwords do not match!');
+            return;
+        }
+
+        // Replace with your registration API call
         // Example using fetch:
-        fetch('/api/Users/login', {
+        fetch('/api/Users/register', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ id, email, password })
         })
-            .then(data => {
+            .then((data) => {
+                console.log(data)
                 if (data.ok) {
-                    console.log(email)
-                    setUser(email);
+                    setUser(data.user);
                     navigate('/bookshelves'); // Redirect to profile or any other page
                 } else {
-                    alert('Login failed');
+                    alert('Registration failed');
                 }
             })
             .catch(error => {
@@ -37,8 +43,8 @@ function LoginPage() {
 
     return (
         <div className="auth-container">
-            <h2>Login</h2>
-            <form onSubmit={handleLogin}>
+            <h2>Register</h2>
+            <form onSubmit={handleRegister}>
                 <div className="form-group">
                     <label htmlFor="email">Email:</label>
                     <input
@@ -59,14 +65,20 @@ function LoginPage() {
                         required
                     />
                 </div>
-                <button type="submit">Login</button>
+                <div className="form-group">
+                    <label htmlFor="confirm-password">Confirm Password:</label>
+                    <input
+                        type="password"
+                        id="confirm-password"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                        required
+                    />
+                </div>
+                <button type="submit">Register</button>
             </form>
-
-            <div>
-                <a href="/register">Don't have ann account?</a>
-            </div>
         </div>
     );
 }
 
-export default LoginPage;
+export default RegisterPage;

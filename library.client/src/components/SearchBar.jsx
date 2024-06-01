@@ -11,7 +11,7 @@ export const SearchBar = () => {
 
     const fetchData = (value) => {
         if (value != "" && value != " ") {
-            fetch(`/api/BooksVolumes/GetBooksByName?name=${value}`)
+            fetch(`/api/Bookvolumes/GetBooksByName?name=${value}`)
                 .then((response) => response.json())
                 .then((json) => {
 

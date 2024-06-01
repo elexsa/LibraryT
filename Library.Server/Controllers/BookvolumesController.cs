@@ -1,24 +1,25 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Library.Server.Models;
 using Library.Server.Clients;
+using Library.Server.Database;
 
 namespace Library.Server.Controllers
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
-    public class BooksVolumesController : ControllerBase
+    public class BookvolumesController : ControllerBase
     {
-        private readonly ILogger<BooksVolumesController> _logger;
-        public BooksVolumesController(ILogger<BooksVolumesController> logger)
+        private readonly ILogger<BookvolumesController> _logger;
+        public BookvolumesController(ILogger<BookvolumesController> logger)
         {
             _logger = logger;
         }
 
         [HttpGet(Name = "GetBooksByName")]
-        public BooksVolumes GetBooksByName(string name, int num=10)
+        public BookVolumes GetBooksByName(string name, int num=10)
         {
-            BooksVolumesClient client = new BooksVolumesClient();
-            BooksVolumes booksVolume = client.GetBooksByName(name, num).Result;
+            BookVolumesClient client = new BookVolumesClient();
+            BookVolumes booksVolume = client.GetBooksByName(name, num).Result;
             return booksVolume;
         }
 
@@ -26,18 +27,18 @@ namespace Library.Server.Controllers
         [HttpGet(Name = "GetBookById")]
         public BookVolume GetBookById(string id)
         {
-            BooksVolumesClient client = new BooksVolumesClient();
+            BookVolumesClient client = new BookVolumesClient();
             BookVolume bookVolume = client.GetBookById(id).Result;
             return bookVolume;
         }
 
         [HttpGet(Name = "GetBookByParams")]
-        public BooksVolumes GetBookByParams(string title="", string author ="")
+        public BookVolumes GetBookByParams(string title="", string author ="")
         {
-            BooksVolumesClient client = new BooksVolumesClient();
+            BookVolumesClient client = new BookVolumesClient();
             try
             {
-                BooksVolumes bookVolume = client.GetBookByParams(title, author).Result;
+                BookVolumes bookVolume = client.GetBookByParams(title, author).Result;
                 return bookVolume;
 
             }
