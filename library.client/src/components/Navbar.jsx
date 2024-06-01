@@ -1,4 +1,5 @@
 ﻿import React from 'react';
+import {useEffect } from 'react';
 import {useState} from "react";
 //import { Collapse, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink }
 //import { Link } from 'react-router-dom';
@@ -16,12 +17,36 @@ function Navbar()
     const [state, setState] = useState(true);
     const handleClick = () => { setState({ clicked: !state.clicked }) }
 
-    
+    const [isVisible, setIsVisible] = useState(true);
+    const [lastScrollY, setLastScrollY] = useState(0);
+
+    const handleScroll = () => {
+        if (typeof window !== 'undefined') {
+            if (window.scrollY > lastScrollY) {
+                // Scrolling down
+                setIsVisible(false);
+            } else {
+                // Scrolling up
+                setIsVisible(true);
+            }
+            setLastScrollY(window.scrollY);
+        }
+    };
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            window.addEventListener('scroll', handleScroll);
+
+            return () => {
+                window.removeEventListener('scroll', handleScroll);
+            };
+        }
+    }, [lastScrollY]);
 
 
     return (
 
-        <nav className="NavbarItems">
+        <nav className={`NavbarItems navbar ${isVisible ? 'visible' : 'hidden'}`}>
             <a href="/">
                 <h1 className="logo">
                     Library <i class="fa-solid fa-book"></i>
