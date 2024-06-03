@@ -4,8 +4,9 @@ import BookCard from './BookCard';
 import './BookList.css';
 
 const BookList = ({ books }) => {
-    console.log(books)
+
     if (books != undefined) {
+    
         return (
             
                 <div className="book-list">

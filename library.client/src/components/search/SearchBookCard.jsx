@@ -1,20 +1,14 @@
-// src/components/BookCard.js
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { useUser } from '/src/context/UserContext';
-import './BookCard.css';
-import { useContext } from 'react';
-import { useState } from 'react';
+import { useUser } from '/src/context/UserContext'
 
+function SearchBookCard({ book, index }) {
 
-
-const BookCard = ({ book }) => {
     const { user, logout } = useUser();
-    const [bookmark, setBookmark ]= useState(false);
     const navigate = useNavigate();
+    const [bookmark, setBookmark] = useState(false);
 
-    
     const postBook = async () => {
         if (!user) {
             navigate("/login")
@@ -29,27 +23,32 @@ const BookCard = ({ book }) => {
                 imageLink: book.volumeInfo.imageLinks != null ? book.volumeInfo.imageLinks.smallThumbnail : "https://via.placeholder.com/120x180.png?text=no+photo"
 
             }, { params: { userId: user.id } }).then(setBookmark(true));
-            
+
     };
+
     return (
-        <div className="book-card-home">
-            <a  href={`/preview?id=${book.id}`}>
-        
-                <img src={book.volumeInfo.imageLinks != null ? book.volumeInfo.imageLinks.smallThumbnail : "https://via.placeholder.com/120x180.png?text=no+photo"} alt={book.volumeInfo.title} />
-                <div className="book-details-home">
-                    <h3>{book.volumeInfo.title.length > 40 ? book.volumeInfo.title.substr(0, 39) + "..." : book.volumeInfo.title}</h3>    
-                    <p>Author: {book.volumeInfo.author}</p>
-                    <p>Genre: {book.volumeInfo.categories}</p>
-                    <span>Published Date: {book.volumeInfo.publishedDate != null ? new Date(book.volumeInfo.publishedDate).toDateString() : "not specified"}</span>
+        <div key={index} className="book-card">
+
+            <a href={`/preview?id=${book.id}`}>
+
+                <div className="image-container">
+                    <img src={book.volumeInfo.imageLinks != null ? book.volumeInfo.imageLinks.smallThumbnail : "https://via.placeholder.com/120x180.png?text=no+photo"}></img>
                 </div>
+                <div className="text-container">
+
+                    <h3>{book.volumeInfo.title}</h3>
+                    <p>Author: {book.volumeInfo.authors}</p>
+                    <span>Publisher: {book.volumeInfo.publisher != null ? book.volumeInfo.publisher : "not specified"}</span>
+                    <span>Published Date: {book.volumeInfo.publishedDate != null ? new Date(book.volumeInfo.publishedDate).toDateString() : "not specified"}</span>
+
+                </div>
+
             </a>
-
-            <button className="bookmark-link" onClick={postBook}>
+            <button className="bookmark-link" onClick={postBook} style={{ position: 'absolute' }}>
                 <i class={bookmark ? "fa-solid fa-bookmark" : "fa-regular fa-bookmark"} ></i>
-
             </button>
         </div>
-    );
-};
+    )
+}
 
-export default BookCard;
+export default SearchBookCard

@@ -9,7 +9,8 @@ function RegisterPage() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const { setUser } = useUser();
     const navigate = useNavigate();
-
+    var id = '';
+    var favBooks=[];
     const handleRegister = async (e) => {
         e.preventDefault();
 
@@ -22,13 +23,13 @@ function RegisterPage() {
             const response = await fetch('/api/users/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password }),
+                body: JSON.stringify({ id, email, password, favBooks}),
             });
 
             if (response.ok) {
                 const { token, user } = await response.json();
                 setUser(user, token);
-                navigate('/profile');
+                navigate('/bookshelves');
             } else {
                 alert('Registration failed');
             }

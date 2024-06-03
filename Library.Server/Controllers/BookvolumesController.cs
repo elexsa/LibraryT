@@ -18,9 +18,15 @@ namespace Library.Server.Controllers
         [HttpGet(Name = "GetBooksByName")]
         public BookVolumes GetBooksByName(string name, int num=10)
         {
-            BookVolumesClient client = new BookVolumesClient();
-            BookVolumes booksVolume = client.GetBooksByName(name, num).Result;
-            return booksVolume;
+            try
+            {
+
+                BookVolumesClient client = new BookVolumesClient();
+                BookVolumes booksVolume = client.GetBooksByName(name, num).Result;
+                return booksVolume;
+            }
+            catch(Exception ex) { Console.WriteLine(ex.Message); }
+            return new();
         }
 
 

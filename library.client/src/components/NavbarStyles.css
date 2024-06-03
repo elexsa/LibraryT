@@ -113,7 +113,7 @@
         justify-content: flex-start;
         background: rgba(255, 255, 255, .25);
         box-shadow: 0 8px 32px rgba(31, 38, 135, .37);
-        backdrop-filter: blur(8px);
+        backdrop-filter: blur(13px);
         border-radius: 13px;
         width: 100%;
         height: auto;

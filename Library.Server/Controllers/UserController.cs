@@ -1,8 +1,13 @@
 ﻿// Controllers/UsersController.cs
 
+using Amazon.Runtime;
 using Library.Server.Database;
 using Library.Server.Helpers;
+using Library.Server.Models;
+using Library.Server.Services;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Driver;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace Library.Server.Controllers
 {
@@ -29,6 +34,7 @@ namespace Library.Server.Controllers
             }
 
             _userRepository.CreateUser(user);
+
             return Ok(new { token = _jwtHelper.GenerateToken(user.Email), user });
         }
 
@@ -42,6 +48,54 @@ namespace Library.Server.Controllers
             }
 
             return Ok(new { token = _jwtHelper.GenerateToken(existingUser.Email), user = existingUser });
+        }
+
+        [HttpPost("AddBookToFav")]
+        public async Task<IActionResult> AddBookToFav(string userId, [FromBody]SmallBookOverview book)
+        {
+            var existingUser = _userRepository.GetUserById(userId);
+            if (existingUser == null)
+            {
+                return Unauthorized("Sory, invalid user.");
+            }
+            var existingBook = _userRepository.GetBooksByUserAsync(userId).Result.Exists(storedBook => storedBook.Id == book.Id);
+            if (existingBook)
+            {
+                return BadRequest(book.Title+" is already exists");
+            }
+            await _userRepository.AddBookToUserAsync(userId, book);
+            return Ok();
+        }
+
+        [HttpDelete("DelBookFromFav")]
+        public async Task<IActionResult> DelBookFromFav(string userId, SmallBookOverview book)
+        {
+            var existingUser = _userRepository.GetUserById(userId);
+            if (existingUser == null)
+            {
+                return Unauthorized("Sory, invalid user.");
+            }
+            if (existingUser.FavBooks.Count > 0)
+            {
+                await _userRepository.RemoveBookFromUserAsync(userId, book);
+                return Ok();
+            }
+            return BadRequest("There is no books in list.");
+            
+        }
+
+        [HttpGet("GetBooksByUser")]
+        public async Task<IActionResult> GetBooksByUser(string userId)
+        {
+            var existingUser = _userRepository.GetUserById(userId);
+            if (existingUser == null)
+            {
+                return Unauthorized("Sory, invalid user.");
+            }
+
+            var result = await _userRepository.GetBooksByUserAsync(userId);
+
+            return Ok(result);
         }
     }
 }

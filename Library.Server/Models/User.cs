@@ -1,6 +1,7 @@
 ﻿// User.cs
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using Library.Server.Models;
 
 public class User
 {
@@ -10,4 +11,5 @@ public class User
 
     public string Email { get; set; }
     public string Password { get; set; }
+    public List<SmallBookOverview> FavBooks { get; set; }
 }

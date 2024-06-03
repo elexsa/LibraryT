@@ -66,7 +66,7 @@ const Home = () => {
 //        setFilteredBooks(books);
 ///*    }*/
 //    }, [selectedGenre]);
-    console.log(books)
+
 
     return (
     <div className="App">

@@ -9,38 +9,29 @@ const BookList = ({ title, books }) => {
 
     return (
         <div className="book-list">
-            <div className="list-header">
-                <h2>{title}</h2>
-                <button onClick={() => setIsCollapsed(!isCollapsed)}>
-                    {isCollapsed ? 'Expand' : 'Collapse'}
-                </button>
-            </div>
-            {!isCollapsed && (
-                <ScrollMenu>
-                    {books.map((book) => (
-                        <BookCard key={book.id} book={book} />
-                    ))}
-                </ScrollMenu>
-            )}
+
+            {books.map((book) => (
+                <BookCard key={book.id} book={book} />
+            ))}
+
+            
         </div>
     );
 };
 
-const BookLists = () => {
+const BookLists = ({ id }) => {
+
+
     const [favorites, setFavorites] = useState([]);
-    const [readingNow, setReadingNow] = useState([]);
-    const [wantToRead, setWantToRead] = useState([]);
+    const fetchBooks = async () => {
+        const favoritesRes = await axios.get('/api/Users/GetBooksByUser/', { params: { userId: id } });
+
+        setFavorites(favoritesRes.data);
+
+    };
 
     useEffect(() => {
-        const fetchBooks = async () => {
-            const favoritesRes = await axios.get('/api/favorites');
-            const readingNowRes = await axios.get('/api/readingNow');
-            const wantToReadRes = await axios.get('/api/wantToRead');
 
-            setFavorites(favoritesRes.data);
-            setReadingNow(readingNowRes.data);
-            setWantToRead(wantToReadRes.data);
-        };
 
         fetchBooks();
     }, []);
@@ -48,8 +39,7 @@ const BookLists = () => {
     return (
         <div className="book-lists">
             <BookList title="Favorites" books={favorites} />
-            <BookList title="Reading Now" books={readingNow} />
-            <BookList title="Want to Read" books={wantToRead} />
+
         </div>
     );
 };

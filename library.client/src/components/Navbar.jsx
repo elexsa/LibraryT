@@ -53,12 +53,10 @@ function Navbar()
                 </h1>
             </a>
 
-
             <div className="end-wrapper">
                 <div className="search-bar-container">
                     <SearchBar />
                 </div>
-
 
                 <div className="menu-icons" onClick={handleClick}>
                     <i className={state.clicked ? "fas fa-xmark" : "fas fa-bars"}></i>
@@ -74,21 +72,6 @@ function Navbar()
                             </li>
                         )
                     })}
-                    {/*<li>*/}
-                    {/*    <button className="nav-links" onClick={() => login()}>*/}
-                    {/*        <i className="fa-brands fa-google"></i>*/}
-                    {/*        SignIn*/}
-                    {/*    </button>*/}
-                    {/*</li>*/}
-                    {/*<GoogleLogin*/}
-                    {/*    onSuccess={(credentialResponse) => {*/}
-                    {/*        const credentialResponseDecoded = jwtDecode(credentialResponse.credential)*/}
-                    {/*        console.log(credentialResponseDecoded);*/}
-                    {/*    }}*/}
-                    {/*    onError={() => {*/}
-                    {/*        console.log("Login Failed");*/}
-                    {/*    }}*/}
-                    {/*/>*/}
                 </ul>
             </div>
         </nav>
@@ -98,41 +81,3 @@ function Navbar()
     
 
 export default Navbar;
-//export class NavMenu extends Component {
-//    static displayName = NavMenu.name;
-//    constructor(props) {
-//        super(props);
-//        this.toggleNavbar = this.toggleNavbar.bind(this);
-//        this.state = {
-//            collapsed: true
-//        };
-//    }
-//    toggleNavbar() {
-//        this.setState({
-//            collapsed: !this.state.collapsed
-//        });
-//    }
-//    render() {
-//        return (
-//            <header>
-//                <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom boxshadow mb-3" collapsed>
-//                    <NavbarBrand tag={Link} to="/">RankingApp</NavbarBrand>
-//                    <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
-//                    <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isopen={!this.state.collapsed} navbar>
-//                        <ul className="navbar-nav flex-grow">
-//                            <NavItem>
-//                                <NavLink tag={Link} className="text-dark" to="/">Home</NavLink>
-//                            </NavItem>
-//                            <NavItem>
-//                                <NavLink tag={Link} className="text-dark" to="/counter">Counter</NavLink>
-//                            </NavItem>
-//                            <NavItem>
-//                                <NavLink tag={Link} className="text-dark" to="/test">Fetch data</NavLink>
-//                            </NavItem>
-//                        </ul>
-//                    </Collapse >
-//                </Navbar >
-//            </header >
-//            );
-//    }
-//}

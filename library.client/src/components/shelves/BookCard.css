@@ -1,5 +1,5 @@
 /* src/components/BookCard.css */
-.book-card-home {
+.book-card {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -9,18 +9,18 @@
     margin-bottom: 20px;
     background-color: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    width: 200px;
+    width: 150px;
     color: initial
 }
 
-.book-card-home img {
+.book-card img {
     width: 100%;
     height: auto;
     border-radius: 8px;
     margin-bottom: 10px;
 }
 
-.book-details-home h3 {
+.book-details h3 {
     margin: 0 0 10px;
 }
 
@@ -32,16 +32,20 @@
     font-size: 0.9em;
     color: #555;
 }
-.bookmark-link {
+.remove-btn {
     margin-top: 1rem;
-    background: #646cff
+    background: crimson;
+    outline: none;
+    border: none
 }
 
-.bookmark-link:hover {
-    background: #393e93
+.remove-btn:hover {
+    background: red;
+    outline: none
+
 }
 
-.bookmark-link:focus {
+.remove-btn:focus {
     outline: none
 }
 

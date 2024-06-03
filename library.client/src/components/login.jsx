@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useUser } from '../context/UserContext';
 import { useNavigate } from 'react-router-dom';
+import "./Login.css"
 
 function LoginPage() {
     const [email, setEmail] = useState('');
@@ -9,6 +10,7 @@ function LoginPage() {
     const { setUser } = useUser();
     const navigate = useNavigate();
     var id = ""
+    var favBooks = [];
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -17,7 +19,7 @@ function LoginPage() {
             const response = await fetch('/api/users/login', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({id, email, password }),
+                body: JSON.stringify({ id, email, password, favBooks }),
             });
 
             if (response.ok) {
@@ -57,6 +59,10 @@ function LoginPage() {
                         required
                     />
                 </div>
+                <div className="link-container">
+                    <a href="/register">Don't registred?</a>
+                </div>
+
                 <button type="submit">Login</button>
             </form>
         </div>

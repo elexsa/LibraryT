@@ -2,6 +2,9 @@
 
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { useUser } from '/src/context/UserContext';
+import SearchBookCard from './SearchBookCard';
 
 const SearchForm = () => {
     const [searchParams, setSearchParams] = useState({
@@ -10,27 +13,27 @@ const SearchForm = () => {
         subject: '',
         publisher:'',
     });
-
     const [results, setResults] = useState([]);
+    const { user, logout } = useUser();
+    const navigate = useNavigate();
+    const [bookmark, setBookmark] = useState(false);
+        
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        
         setSearchParams({ ...searchParams, [name]: `${value}` });
     };
 
     const handleSubmit = async (e) => {
-        console.log(searchParams)
         e.preventDefault(searchParams);
         try {
-            //axios.get('/api/BooksVolumes/GetBookByParams', searchParams)
             const response = await axios.get('/api/Bookvolumes/GetBookByParams', { params: searchParams });
-            console.log(response)
             setResults(response.data);
         } catch (error) {
             console.error('Error fetching search results:', error);
         }
     };
+
 
     const showResults = () => {
 
@@ -41,21 +44,8 @@ const SearchForm = () => {
                 <ul>
 
                     {bookVolumes.map((book, index) => (
-                        <a href={`/preview?id=${book.id}`}>
-                            <div key={index} className="book-card">
-                                <div className="image-container">
-                                    <img src={book.volumeInfo.imageLinks != null ? book.volumeInfo.imageLinks.smallThumbnail : "https://via.placeholder.com/120x180.png?text=no+photo"}></img>
-                                </div>
-                                <div className="text-container">
-
-                                    <h3>{book.volumeInfo.title}</h3>
-                                    <p>Author: {book.volumeInfo.authors}</p>
-                                    <span>Publisher: {book.volumeInfo.publisher != null ? book.volumeInfo.publisher : "not specified"}</span>
-                                    <span>Published Date: {book.volumeInfo.publishedDate != null ? new Date(book.volumeInfo.publishedDate).toDateString() : "not specified"}</span>
-                                </div>
-                            </div>
-                        </a>
-
+                        <SearchBookCard book={book} index={index} />
+                        
                     ))}
                 </ul>
 
