@@ -1,4 +1,4 @@
-function Photo({ volumeInfo }) {
+function Description({ volumeInfo }) {
    
 
     var content =
@@ -10,4 +10,4 @@ function Photo({ volumeInfo }) {
     return content
 }
 
-export default Photo;
+export default Description;

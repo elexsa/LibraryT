@@ -32,11 +32,11 @@ import "./styles/PreviewPage.css"
          if (data.volumeInfo.imageLinks == null) {
              photoLink = "https://via.placeholder.com/300x450.png?text=no+photo"
          } else { photoLink = data.volumeInfo.imageLinks.thumbnail }
-        console.log(data)
+
         content =
 
             <div className="preview-wrapper">
-                <Photo link={photoLink} />
+                <Photo book={data} />
                 <Description volumeInfo={data.volumeInfo} />
                 <Buttons data={data} />
 

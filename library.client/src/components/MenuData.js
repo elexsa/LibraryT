@@ -14,7 +14,7 @@ export const MenuData = [
     },
 
     {
-        title: "Shelves",
+        title: "Shelf",
         url: "/bookshelves",
         cName: "nav-links",
         icon: "fa-solid fa-layer-group"

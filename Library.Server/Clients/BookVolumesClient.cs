@@ -8,20 +8,16 @@ namespace Library.Server.Clients
 {
     public class BookVolumesClient
     {
-        private static string _address;
         private static string _apiKey;
-        private static string _apiHost;
+
 
         public BookVolumesClient()
         {
-            _address = Constants.ApiVolumesAddress;
             _apiKey = Constants.ApiKey;
-
         }
 
         public async Task<BookVolumes> GetBooksByName(string name, int num)
         {
-
 
             var @params = new Dictionary<string, string>
             {

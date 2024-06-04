@@ -16,10 +16,10 @@ const Bookshelves = () => {
     if (!user) {
         return <div>Loading...</div>;
     }
-    console.log(user.id)
+
     return (
         <div>
-            <h1>Shelves</h1>
+            <h1>Your Shelf</h1>
             <BookLists id={user.id} />
         </div >)
 };

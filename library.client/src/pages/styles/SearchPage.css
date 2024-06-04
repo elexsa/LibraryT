@@ -58,7 +58,7 @@ input[type="date"] {
     margin-top: 20px;
 }
 
-.book-card {
+.book-card-asearch {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -68,28 +68,38 @@ input[type="date"] {
     margin-bottom: 20px;
     background-color: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+.info-container-asearch {
+    display: flex;
+    justify-content: space-between;
     gap: 1rem
 }
 
-.image-container img{
+.image-container-asearch img {
     border-radius: 5px;
 }
 
-.text-container {
+.text-container-asearch {
     width: 100%
 }
 
-.text-container h3 {
-    color: initial;
-    margin: 0 0 10px;
-}
+    .text-container-asearch h3 {
+        color: initial;
+        margin: 0 0 10px;
+    }
 
-.text-container p {
-    color: initial;
-    margin: 5px 0;
-}
+    .text-container-asearch p {
+        color: initial;
+        margin: 5px 0;
+    }
 
-.text-container span {
-    font-size: 0.9em;
-    color: #555;
+    .text-container-asearch span {
+        font-size: 0.9em;
+        color: #555;
+    }
+.bookmark-link{
+    
+    height: 3rem;
 }

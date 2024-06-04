@@ -9,8 +9,7 @@ using Library.Server.Models;
 
 namespace Library.Server.Controllers
 {
-    [ApiController]
-    [Route("[controller]/[action]")]
+
     public class GoogleOAuthController : Controller
     {
 

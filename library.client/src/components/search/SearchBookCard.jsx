@@ -27,24 +27,24 @@ function SearchBookCard({ book, index }) {
     };
 
     return (
-        <div key={index} className="book-card">
+        <div key={index} className="book-card-asearch ">
 
-            <a href={`/preview?id=${book.id}`}>
+            <a href={`/preview?id=${book.id}`} className="info-container-asearch ">
 
-                <div className="image-container">
+                <div className="image-container-asearch ">
                     <img src={book.volumeInfo.imageLinks != null ? book.volumeInfo.imageLinks.smallThumbnail : "https://via.placeholder.com/120x180.png?text=no+photo"}></img>
                 </div>
-                <div className="text-container">
+                <div className="text-container-asearch ">
 
                     <h3>{book.volumeInfo.title}</h3>
                     <p>Author: {book.volumeInfo.authors}</p>
-                    <span>Publisher: {book.volumeInfo.publisher != null ? book.volumeInfo.publisher : "not specified"}</span>
+                    <span>Publisher: {book.volumeInfo.publisher != null ? book.volumeInfo.publisher : "not specified"}</span><br></br>
                     <span>Published Date: {book.volumeInfo.publishedDate != null ? new Date(book.volumeInfo.publishedDate).toDateString() : "not specified"}</span>
 
                 </div>
 
             </a>
-            <button className="bookmark-link" onClick={postBook} style={{ position: 'absolute' }}>
+            <button className="bookmark-link" onClick={postBook}>
                 <i class={bookmark ? "fa-solid fa-bookmark" : "fa-regular fa-bookmark"} ></i>
             </button>
         </div>

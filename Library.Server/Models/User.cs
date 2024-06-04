@@ -1,5 +1,4 @@
-﻿// User.cs
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using Library.Server.Models;
 

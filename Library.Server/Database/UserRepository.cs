@@ -26,20 +26,9 @@ namespace Library.Server.Database
             return _users.Find(user => user.Id == id).FirstOrDefault();
         }
 
-
         public void CreateUser(User user)
         {
             _users.InsertOne(user);
-        }
-
-        public async Task CreateUserAsync(User user)
-        {
-            await _users.InsertOneAsync(user);
-        }
-
-        public async Task<User> GetUserAsync(string email)
-        {
-            return await _users.Find(user => user.Email == email).FirstOrDefaultAsync();
         }
 
         public async Task AddBookToUserAsync(string id, SmallBookOverview book)

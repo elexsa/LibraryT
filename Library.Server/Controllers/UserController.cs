@@ -1,13 +1,8 @@
-﻿// Controllers/UsersController.cs
-
-using Amazon.Runtime;
-using Library.Server.Database;
+﻿using Library.Server.Database;
 using Library.Server.Helpers;
 using Library.Server.Models;
-using Library.Server.Services;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Driver;
-using static System.Reflection.Metadata.BlobBuilder;
+
 
 namespace Library.Server.Controllers
 {

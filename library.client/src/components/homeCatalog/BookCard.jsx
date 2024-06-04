@@ -1,13 +1,9 @@
-// src/components/BookCard.js
 import React from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '/src/context/UserContext';
 import './BookCard.css';
-import { useContext } from 'react';
 import { useState } from 'react';
-
-
 
 const BookCard = ({ book }) => {
     const { user, logout } = useUser();
@@ -37,8 +33,8 @@ const BookCard = ({ book }) => {
         
                 <img src={book.volumeInfo.imageLinks != null ? book.volumeInfo.imageLinks.smallThumbnail : "https://via.placeholder.com/120x180.png?text=no+photo"} alt={book.volumeInfo.title} />
                 <div className="book-details-home">
-                    <h3>{book.volumeInfo.title.length > 40 ? book.volumeInfo.title.substr(0, 39) + "..." : book.volumeInfo.title}</h3>    
-                    <p>Author: {book.volumeInfo.author}</p>
+                    <h3>{book.volumeInfo.title != null ? (book.volumeInfo.title.length > 40 ? book.volumeInfo.title.substr(0, 39) + "..." : book.volumeInfo.title):""}</h3>    
+                    <p>Author: {book.volumeInfo.authors != null ? book.volumeInfo.authors : ["not specified"]}</p>
                     <p>Genre: {book.volumeInfo.categories}</p>
                     <span>Published Date: {book.volumeInfo.publishedDate != null ? new Date(book.volumeInfo.publishedDate).toDateString() : "not specified"}</span>
                 </div>
