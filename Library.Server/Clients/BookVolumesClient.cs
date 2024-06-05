@@ -72,8 +72,6 @@ namespace Library.Server.Clients
                 terms.Add("isbn:" + isbn);
             }
 
-
-
             var searchParams = new Dictionary<string, string>
             {
                 { "q", string.Join("+", terms) },

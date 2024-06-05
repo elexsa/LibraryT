@@ -12,6 +12,11 @@ namespace Library.Server.Controllers
     {
         private readonly UserRepository _userRepository;
         private readonly JwtHelper _jwtHelper;
+        private readonly ILogger<UsersController> _logger;
+        public UsersController(ILogger<UsersController> logger)
+        {
+            _logger = logger;
+        }
 
         public UsersController(UserRepository userRepository, JwtHelper jwtHelper)
         {
@@ -19,7 +24,7 @@ namespace Library.Server.Controllers
             _jwtHelper = jwtHelper;
         }
 
-        [HttpPost("register")]
+        [HttpPost("Register")]
         public IActionResult Register([FromBody] User user)
         {
             var existingUser = _userRepository.GetUserByEmail(user.Email);
@@ -33,7 +38,7 @@ namespace Library.Server.Controllers
             return Ok(new { token = _jwtHelper.GenerateToken(user.Email), user });
         }
 
-        [HttpPost("login")]
+        [HttpPost("Login")]
         public IActionResult Login([FromBody] User user)
         {
             var existingUser = _userRepository.GetUserByEmail(user.Email);

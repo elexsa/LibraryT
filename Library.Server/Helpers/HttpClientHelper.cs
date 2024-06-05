@@ -27,9 +27,7 @@ namespace Library.Server.Helpers
 
         private static async Task<T> SendHttpRequestAsync<T>(HttpMethod httpMethod, string endpoint, string accessToken = null, Dictionary<string, string> queryParams = null, HttpContent httpContent = null)
         {
-            var url = queryParams != null
-                ? QueryHelpers.AddQueryString(endpoint, queryParams)
-                : endpoint;
+            var url = queryParams != null ? QueryHelpers.AddQueryString(endpoint, queryParams) : endpoint;
 
             var request = new HttpRequestMessage(httpMethod, url);
 
