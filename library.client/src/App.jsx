@@ -9,8 +9,6 @@ import Search from "./pages/Search";
 import Bookshelves from "./pages/Bookshelves";
 import Register from "./components/Register";
 import Login from "./components/Login";
-import BookLists from "./components/shelves/BookLists";
-import NoPage from "./pages/NoPage";
 
 export default function App() {
     const { user } = useUser();

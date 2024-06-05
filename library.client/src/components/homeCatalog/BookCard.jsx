@@ -9,7 +9,6 @@ const BookCard = ({ book }) => {
     const { user, logout } = useUser();
     const [bookmark, setBookmark ]= useState(false);
     const navigate = useNavigate();
-
     
     const postBook = async () => {
         if (!user) {
@@ -18,14 +17,11 @@ const BookCard = ({ book }) => {
         await axios.post(
             '/api/Users/AddBookToFav/',
             {
-
                 id: book.id,
                 title: book.volumeInfo.title,
                 author: book.volumeInfo.authors != null ? book.volumeInfo.authors : ["not specified"],
                 imageLink: book.volumeInfo.imageLinks != null ? book.volumeInfo.imageLinks.smallThumbnail : "https://via.placeholder.com/120x180.png?text=no+photo"
-
             }, { params: { userId: user.id } }).then(setBookmark(true));
-            
     };
     return (
         <div className="book-card-home">

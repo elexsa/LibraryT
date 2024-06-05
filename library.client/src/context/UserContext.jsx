@@ -1,4 +1,3 @@
-// src/UserContext.js
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const UserContext = createContext();
@@ -26,7 +25,6 @@ export const UserProvider = ({ children }) => {
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token && !user) {
-            // Optionally, validate the token with an API call
             setUser(JSON.parse(localStorage.getItem('user')));
         }
     }, [user]);

@@ -2,8 +2,6 @@ import React, {useState} from "react";
 import "./SearchBarStyles.css"
 import { SearchResultsList } from './SearchResultsList';
 
-
-
 export const SearchBar = () => {
     const [input, setInput] = useState("");
     const [results, setResults] = useState([]);

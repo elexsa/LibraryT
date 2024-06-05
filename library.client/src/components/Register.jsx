@@ -1,4 +1,3 @@
-// src/RegisterPage.js
 import React, { useState } from 'react';
 import { useUser } from '../context/UserContext';
 import { useNavigate } from 'react-router-dom';
@@ -12,6 +11,7 @@ function RegisterPage() {
     var id = '';
     var favBooks=[];
     const handleRegister = async (e) => {
+
         e.preventDefault();
 
         if (password !== confirmPassword) {

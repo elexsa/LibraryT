@@ -1,6 +1,7 @@
-function Description({ volumeInfo }) {
-   
+import React from "react"
 
+function Description({ volumeInfo })
+{
     var content =
         <div className="description-wrapper">
             <h1 class="book-title">{volumeInfo.title}</h1>

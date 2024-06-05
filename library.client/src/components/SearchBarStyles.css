@@ -4,7 +4,6 @@
     border-radius: 10px;
     height: 2rem;
     padding: 0 15px;
-    /*box-shadow: 0px 0px 8px white;*/
     display: flex;
     align-items: center;
 }
@@ -27,11 +26,5 @@
     top: 80px;
     position: absolute;
 }
-
-/*
-.search-input:focus + .search-result-container{
-    display: block;
-}*/
-
 
 

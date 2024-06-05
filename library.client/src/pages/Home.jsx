@@ -4,7 +4,6 @@ import BookList from '../components/homeCatalog/BookList';
 import axios from 'axios';
 import "./styles/HomePage.css";
 
-
 const Home = () => {
 
     const [books, setBooks] = useState([]);

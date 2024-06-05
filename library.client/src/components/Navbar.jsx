@@ -1,16 +1,9 @@
 ﻿import React from 'react';
 import {useEffect } from 'react';
 import {useState} from "react";
-//import { Collapse, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink }
-//import { Link } from 'react-router-dom';
-//import './NavbarStyles.css';
 import { MenuData } from "./MenuData";
 import { SearchBar } from "./SearchBar";
-import { Link } from 'react-router-dom';
 import "./NavbarStyles.css";
-import { GoogleLogin } from "@react-oauth/google";
-import { jwtDecode } from "jwt-decode";
-import { useGoogleLogin } from '@react-oauth/google';
 
 function Navbar()
 {

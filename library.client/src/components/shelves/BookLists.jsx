@@ -1,4 +1,3 @@
-// src/components/BookLists.js
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useUser } from '/src/context/UserContext'
@@ -6,33 +5,23 @@ import { useNavigate } from 'react-router-dom';
 import './BookCard.css';
 import { ScrollMenu } from 'react-horizontal-scrolling-menu';
 
-
 const BookLists = ({ id }) => {
-
-
 
     const [favorites, setFavorites] = useState([]);
     const fetchBooks = async () => {
         const favoritesRes = await axios.get('/api/Users/GetBooksByUser/', { params: { userId: id } });
-
         setFavorites(favoritesRes.data);
-
     };
     
-
     useEffect(() => {
-
-
         fetchBooks();
     }, [favorites]);
-
 
     return (
         <div className="book-list">
             {favorites.map((book) => (
                 <BookCard key={book.id} book={book} />
             ))}
-
         </div>
     );
 };
@@ -44,7 +33,6 @@ function BookCard({ book }) {
     const navigate = useNavigate();
 
     const deleteBook = async () => {
-
         await axios.delete(
             '/api/Users/DelBookFromFav/',
             {

@@ -1,11 +1,9 @@
 import React from "react";
-//link, authors, publisher, publishedDate, pageCount, language, categories, maturityRating
-function Photo({ book }) {
 
+function Photo({ book }) {
     var content =
         <div className="photo-wrapper">
             <img src={book.volumeInfo.imageLinks != null ? book.volumeInfo.imageLinks.smallThumbnail : "https://via.placeholder.com/120x180.png?text=no+photo"}></img>
-
             <p className="book-description">
                 Author: {book.volumeInfo.authors != null ? book.volumeInfo.authors : ["not specified"]} <br></br>
                 Publisher: {book.volumeInfo.publisher != null ? book.volumeInfo.publisher : "not specified"} <br></br>
@@ -15,8 +13,6 @@ function Photo({ book }) {
                 Categories: {book.volumeInfo.categories != null ? book.volumeInfo.categories : "not specified"} <br></br>
                 Price: {book.saleInfo.listPrice != null ? `${book.saleInfo.listPrice.amount} ${book.saleInfo.listPrice.currencyCode}`: "not specified"}
             </p>
-
-            
         </div>
     return content
 }

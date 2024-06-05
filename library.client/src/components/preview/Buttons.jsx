@@ -1,6 +1,8 @@
-function Buttons({ data }) {
-   
+import React from "react"
 
+
+function Buttons({ data })
+{
     var content =
         <div className="buttons-wrapper">
 

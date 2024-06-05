@@ -15,9 +15,11 @@
     transform: translate(-50%);
     transition: top 0.3s;
 }
+
 .navbar-wrapper{
     height:90px
 }
+
 .logo {
     color: #fff;
     justify-self: start;
@@ -95,7 +97,7 @@
 }
 
 .navbar.hidden {
-    top: -90px; /* Adjust this value based on your navbar's height */
+    top: -90px;
 }
 
 .navbar.visible {
